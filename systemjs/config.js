@@ -1,58 +1,66 @@
-(function (global) {
+(function(global) {
 
-	var paths = {
-		'npm:': 'https://cdn.rodin.io/v0.0.6/'
-	};
+    var paths = {
+        'npm:': 'https://cdn.rodin.io/v0.0.7/'
+    };
 
-	var map = {
-		'rodin/core': 'npm:core',
-	};	
+    var map = {
+        'rodin/core': 'npm:core',
+    };
 
-	var packages = {
-		'dist': { main: 'index.js', defaultExtension: 'js' },
-		'rodin/core': { main: 'index.js', defaultExtension: 'js' },
-	};
+    var packages = {
+        'dist': { main: 'index.js', defaultExtension: 'js' },
+        'rodin/core': { main: 'index.js', defaultExtension: 'js' },
+    };
 
-	var moduleNames = [
-		'core/error',
-		'core/time',
-		'core/scene',
-		'core/sculpt',
-		'core/sculpt/elements',
-		'core/messenger',
-		'core/eventEmitter',
-		'core/set',
-		'core/initializer',
-		'core/constants',
-		'core/rodinEvent',
-		'core/raycaster',
-		'core/controllers',
-		'core/animation',
-		'core/video',
-		'core/button',
-		'core/gamePad',
-		'core/utils',
-		'core/loader',
-		'core/plugin',
-		'core/particleSystem',
-		'core/color',
-		'core/camera',
-		'core/avatar',
-		'core/math'
-	];
+    var moduleNames = [
+        'core/error',
+        'core/time',
+        'core/scene',
+        'core/sculpt',
+        'core/sculpt/elements',
+        'core/messenger',
+        'core/eventEmitter',
+        'core/set',
+        'core/initializer',
+        'core/constants',
+        'core/rodinEvent',
+        'core/raycaster',
+        'core/controllers',
+        'core/animation',
+        'core/video',
+        'core/button',
+        'core/gamePad',
+        'core/utils',
+        'core/loader',
+        'core/plugin',
+        'core/particleSystem',
+        'core/color',
+        'core/camera',
+        'core/avatar',
+        'core/math',
+        'core/transport',
+        'core/device',
+        'core/grid',
+    ];
 
-	function packIndex(moduleName) {
-		packages['' + paths['npm:'] + moduleName + ''] = { main: 'index.js', defaultExtension: 'js' };
-	}
+    function packIndex(moduleName) {
+        packages['' + paths['npm:'] + moduleName + ''] = { main: 'index.js', defaultExtension: 'js' };
+    }
 
-	moduleNames.forEach(packIndex);
+    moduleNames.forEach(packIndex);
 
-	var config = {
-		paths: paths,
-		map: map,
-		packages: packages
-	};
+    var config = {
+        paths: paths,
+        map: map,
+        packages: packages,
+        meta: {
+            '*': {
+                authorization: true
+            }
+        }
+    };
 
-	System.config(config);
+    System.config(config);
 
 })(this);
